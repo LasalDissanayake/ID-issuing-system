@@ -1,0 +1,88 @@
+/* Global Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Form Box Styles */
+.fromebox {
+    background-color: #fff;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Error Message Styles */
+.errorbox {
+    color: #f00;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Form Title Styles */
+.login {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* Form Input Styles */
+.input {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
+}
+
+.input i {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #777;
+}
+
+/* Button Styles */
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #100e94;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #120580;
+}
+
+/* Sign Up Link Styles */
+.p1 {
+    margin-top: 15px;
+    text-align: center;
+    color: #666;
+}
+
+.click {
+    color: #496ebd;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.click:hover {
+    text-decoration: underline;
+}
