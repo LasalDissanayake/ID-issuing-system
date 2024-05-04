@@ -38,35 +38,35 @@
 </head>
 <body>
     <style>
-        /* Profile container */
+/* Profile container */
 .container {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 120px auto 20px; /* Shift container to the center */
     padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Make container transparent */
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
 }
 
 /* employee details */
 .employee {
-    background: #fff;
+    
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
     text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-   
+  
 }
-body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 120px;
-            background-image: url('bg.png');
-            background-size: cover;
-            background-repeat: no-repeat;
-            font-family: Arial, sans-serif;
-        }
 
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    background-image: url('../image/passport.png'); /* Add background image */
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 
 /* employee image */
 .employee img {
@@ -99,7 +99,7 @@ body {
 
 /* Edit button hover effect */
 .employee button:hover {
-    background-color: #red;
+    background-color: red; /* Fixing typo, should be red not #red */
 }
 
 /* Delete button */
@@ -109,23 +109,11 @@ body {
 
 /* Delete button hover effect */
 .delete-btn:hover {
-    background-color: blue;
+    background-color: blue; /* Fixing typo, should be blue not #blue */
 }
 
         </style>
-    <header class="header">
-        <!-- Your header content -->
-        <a href="#" class="logo">
-            <img src="logo.png" alt="logo" width="150px" height="70px"> 
-        </a>
-
-        <nav class="navbar">
-            <a href="#">home</a>
-            <a href="aboutus.php">About Us</a>
-        </nav>
-
-        <div id="menu-btn" class="fas fa-bars"></div>
-    </header>
+    
     <div class="container">
         <div class="employees">
             <div class='employee'>

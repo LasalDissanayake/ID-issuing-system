@@ -32,44 +32,42 @@
 <head>
     <meta charset="UTF-8">
     <title>View User</title>
-    <link rel="stylesheet" href="../css/viewcard.css">
+    <!-- <link rel="stylesheet" href="../css/viewcard.css"> -->
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
 </head>
 <body>
     <style>
-        /* Profile container */
+       /* Profile container */
 .container {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 120px auto 20px; /* Shift container to the center */
     padding: 20px;
-}
-
-/* employee details */
-.employee {
-    background: #fff;
-    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.8); /* Making container transparent */
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* user details */
+.user {
+    padding: 30px;
     text-align: center;
     margin-bottom: 20px;
     color: #333;
-   
 }
+
 body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 120px;
-            background-image: url('bg.png');
-            background-size: cover;
-            background-repeat: no-repeat;
-            font-family: Arial, sans-serif;
-        }
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    background-image: url('../image/id.jpg'); /* Add background image */
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 
-
-/* employee image */
-.employee img {
+/* user image */
+.user img {
     display: block;
     margin: 0 auto 20px;
     width: 150px;
@@ -79,14 +77,14 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-/* employee details paragraphs */
-.employee p {
+/* user details paragraphs */
+.user p {
     margin: 10px 0;
     font-size: 18px;
 }
 
 /* Edit and delete buttons */
-.employee button {
+.user button {
     padding: 10px 20px;
     background-color: blue;
     color: white;
@@ -98,8 +96,8 @@ body {
 }
 
 /* Edit button hover effect */
-.employee button:hover {
-    background-color: #red;
+.user button:hover {
+    background-color: red; /* Fixing typo, should be red not #red */
 }
 
 /* Delete button */
@@ -109,29 +107,18 @@ body {
 
 /* Delete button hover effect */
 .delete-btn:hover {
-    background-color: blue;
+    background-color: blue; /* Fixing typo, should be blue not #blue */
 }
 
+
         </style>
-    <header class="header">
-        <!-- Your header content -->
-        <a href="#" class="logo">
-            <img src="logo.png" alt="logo" width="150px" height="70px"> 
-        </a>
-
-        <nav class="navbar">
-            <a href="#">home</a>
-            <a href="aboutus.php">About Us</a>
-        </nav>
-
-        <div id="menu-btn" class="fas fa-bars"></div>
-    </header>
+   
     <div class="container">
-        <div class="employees">
-            <div class='employee'>
+        <div class="user">
+            <div class='user'>
                 <!-- Display user details -->
                 
-                <img src="<?php echo htmlspecialchars($row['photo']); ?>" alt="employee Image" width="100">
+                <img src="<?php echo htmlspecialchars($row['photo']); ?>" alt="user Image" width="100">
                 <p><strong>Name With Initials:</strong> <?php echo htmlspecialchars($row['nameWithInitials']); ?></p>
                 <p><strong>First Name:</strong> <?php echo htmlspecialchars($row['firstname']); ?></p>
                 <p><strong>Last Name:</strong> <?php echo htmlspecialchars($row['lastname']); ?></p>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Update Contact</title>
+    <title>Update appointment</title>
     <style>
-        /* Reset default browser styles */
+/* Reset default browser styles */
 * {
     margin: 0;
     padding: 0;
@@ -15,6 +15,9 @@ body {
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    background-image: url('../image/appointment.png'); /* Add background image */
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 h1 {
@@ -26,8 +29,8 @@ h1 {
 form {
     width: 70%;
     max-width: 600px;
-    margin: 0 auto;
-    background-color: #fff;
+    margin: 100px auto; /* Shift form to the center */
+    background-color: rgba(255, 255, 255, 0.8); /* Make form transparent */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -49,7 +52,7 @@ select,
 textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #ddd; /* Adjust border color */
     border-radius: 4px;
     font-size: 16px;
 }
@@ -72,17 +75,10 @@ button[type="submit"]:hover {
     background-color: #0056b3;
 }
 
-/* Optional: Add a background image or texture */
-body {
-    background-image: url('3.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
     </style>
 </head>
 <body>
-    <h1>Update Contact</h1>
+    
 
     <?php
     // Include your database connection script (e.g., dbh.php)
@@ -91,14 +87,15 @@ body {
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
         $id = $_GET['id'];
 
-        // Fetch the specific feedback entry from the database
+        // Fetch the specific appointment entry from the database
         $query = "SELECT * FROM appointment WHERE id = $id";
         $result = mysqli_query($conn, $query);
         $row = mysqli_fetch_assoc($result);
 
         if ($row) {
             echo '<form action="update_appointment.php" method="post">
-                <input type="hidden" name="feedback_id" value="' . $row['id'] . '">
+            <h1>Update appointment</h1>
+                <input type="hidden" name="appointment_id" value="' . $row['id'] . '">
                 <div class="form-group">
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" value="' . $row['name'] . '" required>
@@ -130,7 +127,7 @@ body {
                 <button type="submit" name ="submit">Update </button>
             </form>';
         } else {
-            echo 'Feedback entry not found.';
+            echo 'appointment entry not found.';
         }
     }
     ?>
@@ -140,7 +137,7 @@ body {
 <?php
 include '../dbh.php';
 if (isset($_POST['submit'])) {
-    $id = $_POST['feedback_id'];
+    $id = $_POST['appointment_id'];
     $name = $_POST['name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
