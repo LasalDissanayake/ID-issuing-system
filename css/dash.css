@@ -10,14 +10,14 @@
 body{
     width: 100%;
     height: 100vh;
-    background-image: url("./../image/dashBack.png");
+    background-image: url("./../image/dboardBack\ \(2\).png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 .wrapper .sidebar{
-    background: rgb(106, 180, 240);
+    background: rgb(160, 94, 33);
     position: fixed;
     top: 0;
     left: 0;

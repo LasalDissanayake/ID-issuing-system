@@ -2,15 +2,15 @@
 <html>
 <head>
     <title>Contact Us</title>
-    <<style>
-        * {
+    <style>
+      * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    background-image: url('3.jpg');
+    background-image: url('../image/appointment.png');
     background-size: cover;
     background-repeat: no-repeat;
     font-family: Arial, sans-serif;
@@ -19,35 +19,25 @@ body {
     padding: 0;
 }
 
-h1 {
-    
-    text-align: center;
-    margin: 20px 0;
-    background-color: white;
-    width: 60%;
-    height: 50px;
-    border-radius: 8px;
-    margin-left: 270px;
-}
-
 .contact-form {
     width: 70%;
     max-width: 600px;
     margin: 0 auto;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.8); /* Adjust the opacity by changing the alpha value (0.8 for 80% opacity) */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .form-group {
-    margin: 10px 0;
+    margin-bottom: 20px; /* Increased margin for better separation between form groups */
 }
 
 label {
     display: block;
     font-weight: bold;
     color: #333;
+    margin-bottom: 5px; /* Added margin below label for better spacing */
 }
 
 input[type="text"],
@@ -55,9 +45,16 @@ input[type="email"],
 textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc; /* Slightly lighter border color for better contrast */
     border-radius: 4px;
     font-size: 16px;
+    transition: border-color 0.3s ease; /* Smooth transition for better user experience */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+    border-color: #007bff; /* Change border color on focus */
 }
 
 textarea {
@@ -72,19 +69,22 @@ button[type="submit"] {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for button hover effect */
 }
 
 button[type="submit"]:hover {
     background-color: #0056b3;
 }
 
+
     </style>
 </head>
 <body>
-    <h1>Contact Us</h1>
+    
 
     <div class="contact-form">
         <form action="add_appointment.php" method="post">
+        <h1>Make Appointment</h1>
             <div class="form-group">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>

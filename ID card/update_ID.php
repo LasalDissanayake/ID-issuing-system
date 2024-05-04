@@ -4,17 +4,17 @@ include '../dbh.php';
 
 // Check if the ID parameter is passed through the URL
 if (isset($_GET['id'])) {
-    // Retrieve the Employee ID from the URL and sanitize it
+    // Retrieve the ID from the URL and sanitize it
     $id = intval($_GET['id']); // Assuming id is an integer
 
-    // Fetch Employee details from the database
+    // Fetch ID details from the database
     $sql = "SELECT * FROM id_card WHERE id = $id";
     $result = mysqli_query($conn, $sql);
 
     if ($result && mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
 
-        // Assign Employee details to variables
+        // Assign ID details to variables
         $nameWithInitials= $row['nameWithInitials'];
         $firstname = $row['firstname'];
         $lastname = $row['lastname'];
@@ -27,13 +27,13 @@ if (isset($_GET['id'])) {
         $maritalStatus = $row['maritalStatus'];
         $photo = $row['photo']; // existing photo path
     } else {
-        // Employee with the specified ID not found
-        echo "User not found.";
+        // ID with the specified ID not found
+        echo "id not found.";
         exit;
     }
 } else {
     // ID parameter is not provided
-    echo "User ID not specified.";
+    echo "id not specified.";
     exit;
 }
 
@@ -89,7 +89,7 @@ if (isset($_POST['submit'])) {
         // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
-                // Update employee data in the database with new photo path
+                // Update ID data in the database with new photo path
                 $photo = $target_file;
                 $sql = "UPDATE id_card SET 
                         
@@ -107,16 +107,16 @@ if (isset($_POST['submit'])) {
                         WHERE id = $id";
 
                 if (mysqli_query($conn, $sql)) {
-                    echo "Employee data updated successfully.";
+                    echo "ID data updated successfully.";
                 } else {
-                    echo "Error updating employee data: " . mysqli_error($conn);
+                    echo "Error updating ID data: " . mysqli_error($conn);
                 }
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }
         }
     } else {
-        // Update employee data in the database without updating photo path
+        // Update ID data in the database without updating photo path
         $sql = "UPDATE id_card SET 
         nameWithInitials = '$nameWithInitials',
         firstname = '$firstname',
@@ -138,7 +138,7 @@ if (mysqli_query($conn, $sql)) {
     header("Location: view_ID.php?id=$id");
     exit(); // Ensure that code execution stops after redirection
 } else {
-    echo "Error updating employee data: " . mysqli_error($conn);
+    echo "Error updating ID data: " . mysqli_error($conn);
 }
 
     }
@@ -154,87 +154,87 @@ if (mysqli_query($conn, $sql)) {
     <style>
 
 body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 120px;
-            background-image: url('bg.png');
-            background-size: cover;
-            background-repeat: no-repeat;
-            font-family: Arial, sans-serif;
-        }
-        /* CSS for Update Employee Form */
-        .container {
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #f8f9fa;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    background-image: url('../image/id.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
-        }
+/* CSS for Update ID Form */
+.container {
+    max-width: 600px;
+    margin: 120px auto; /* Shift container to the center */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Make container transparent */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-        form {
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        }
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
 
-        label {
-            font-weight: bold;
-            margin-bottom: 10px;
-            display: block;
-            color: #333;
-        }
+form {
+    padding: 20px;
+    
+}
 
-        input[type="text"],
-        input[type="number"],
-        input[type="date"],
-        textarea {
-            width: calc(100% - 22px);
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
+label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+    color: #333;
+}
 
-        img {
-            display: block;
-            margin-bottom: 10px;
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-        }
+input[type="text"],
+input[type="number"],
+input[type="date"],
+textarea {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
 
-        button[type="submit"] {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            font-size: 18px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+img {
+    display: block;
+    margin-bottom: 10px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
 
-        button[type="submit"]:hover {
-            background-color: #0056b3;
-        }
+button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
     </style>
 </head>
 <body>
-<h1>Update Employee</h1>
+
 
 <div class="container">
-    <!-- Update Employee Form -->
+    <!-- Update ID Form -->
     <form method="POST" enctype="multipart/form-data">
+    <h1>Update ID</h1>
         <input type="hidden" name="id" value="<?php echo $id; ?>">
 
         <label for="nameWithInitials">Name With Initials</label>

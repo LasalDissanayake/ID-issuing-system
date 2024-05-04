@@ -23,7 +23,7 @@ if (!isset($_SESSION["user_id"])) {
 
         <div class="sidebar">
             <div class="profile">
-                <img style="width: 100px; " src="image/LOGO.png" alt="" />
+                <img style="width: 100px; " src="image/gov.png" alt="" />
                 <h3>User Dashboard</h3>
                 
             </div>
@@ -43,43 +43,50 @@ if (!isset($_SESSION["user_id"])) {
                 </li>
 
                 <li>
+                    <a href="appoinment/view_appointment.php">
+                        <span class="icon"><i class="fa fa-bell" aria-hidden="true"></i></span>
+                        <span class="item"> View My appointmnet</span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="ID card/add_ID.php">
-                        <span class="icon"><i class="fas fa-users"></i></span>
-                        <span class="item">To Create a ID card</span>
+                        <span class="icon"><i class="fas fa-id-card "></i></span>
+                        <span class="item">Request for Create ID</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="ID card/view_ID.php">
-                        <span class="icon"><i class="fas fa-trash"></i></span>
+                        <span class="icon"><i class="fas fa-id-card"></i></span>
                         <span class="item">View ID</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="passport/add_passport.php">
-                        <span class="icon"><i class="fas fa-trash"></i></span>
-                        <span class="item">Add Passport</span>
+                        <span class="icon"><i class="fas fa-id-card"></i></span>
+                        <span class="item">Request for Passport</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="passport/view_passport.php">
-                        <span class="icon"><i class="fas fa-trash"></i></span>
-                        <span class="item">view Passport</span>
+                        <span class="icon"><i class="fas fa-id-card"></i></span>
+                        <span class="item">View Passport</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="view_User.php">
-                        <span class="icon"><i class="fas fa-address-book"></i></span>
+                        <span class="icon"><i class="fa fa-user-plus" aria-hidden="true"></i></span>
                         <span class="item">My Profile</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="contact_us/add_cdetails.php">
-                        <span class="icon"><i class="fas fa-address-book"></i></span>
+                        <span class="icon"><i class="fas fa-comment "></i></span>
                         <span class="item">Contact us</span>
                     </a>
                 </li>
@@ -87,7 +94,7 @@ if (!isset($_SESSION["user_id"])) {
                 
                 <li>
                     <a href="logout.php">
-                        <span class="icon"><i class="fas fa-address-book"></i></span>
+                        <span class="icon"><i class="fas fa-user-o "></i></span>
                         <span class="item">Log Out</span>
                     </a>
                 </li>

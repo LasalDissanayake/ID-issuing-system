@@ -29,13 +29,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     VALUES ('$firstname', '$lastname','$email','$password','$upload_path')";
 
                 if (mysqli_query($conn, $insert_query)) {
-                    // employee added successfully
+                    // User added successfully
                     echo '<script type="text/javascript">
                             window.onload = function () { 
                                 alert("User Added!"); 
                                 window.location.href = "login.php";
                             }
-                        </script>'; // Redirect to view_employee.php
+                        </script>'; // Redirect to view_User.php
                     exit;
                 } else {
                     // Database insertion failed
@@ -60,25 +60,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add employee</title>
+    <title>Add User</title>
     <style>
-       /* CSS for Update employee Form */
+       /* CSS for Update User Form */
 
-       body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 120px;
-            background-image: url('bg.png');
-            background-size: cover;
-            background-repeat: no-repeat;
-            font-family: Arial, sans-serif;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 120px;
+    background-image: url('image/5464649_2853458.jpg'); /* Add your background image here */
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 .container {
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #f8f9fa;
+    background-color: rgba(248, 249, 250, 0.9); /* Change opacity here */
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -91,9 +91,6 @@ h1 {
 
 form {
     padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 label {
@@ -106,7 +103,10 @@ label {
 input[type="text"],
 input[type="number"],
 input[type="date"],
-textarea {
+textarea,
+input[type="email"],
+input[type="password"],
+input[type="file"] {
     width: calc(100% - 22px);
     padding: 10px;
     margin-bottom: 15px;
@@ -137,14 +137,16 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #0056b3;
 }
+
     </style>
 </head>
 <body>
     
-    <h1>Register Form</h1>
+    
 
     <div class="container">
         <form action="sign_up.php" method="post" enctype="multipart/form-data">
+        <h1>Register Form</h1>
             <label for="firstname">First Name</label>
             <input type="text" name="firstname" required>
 

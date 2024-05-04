@@ -38,38 +38,35 @@
 </head>
 <body>
     <style>
-        /* Profile container */
+       body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    background-image: url('image/userview.png'); /* Background image */
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 120px;
+}
+
 .container {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 120px auto; /* Shifted to the center */
     padding: 20px;
-}
-
-/* employee details */
-.employee {
-    background: #fff;
-    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9); /* Transparent background */
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.user {
+    
+    padding: 30px;
+    
     text-align: center;
     margin-bottom: 20px;
-    color: #333;
    
 }
-body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 120px;
-            background-image: url('bg.png');
-            background-size: cover;
-            background-repeat: no-repeat;
-            font-family: Arial, sans-serif;
-        }
 
-
-/* employee image */
-.employee img {
+.user img {
     display: block;
     margin: 0 auto 20px;
     width: 150px;
@@ -79,14 +76,12 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-/* employee details paragraphs */
-.employee p {
+.user p {
     margin: 10px 0;
     font-size: 18px;
 }
 
-/* Edit and delete buttons */
-.employee button {
+.user button {
     padding: 10px 20px;
     background-color: blue;
     color: white;
@@ -97,19 +92,16 @@ body {
     transition: background-color 0.3s;
 }
 
-/* Edit button hover effect */
-.employee button:hover {
-    background-color: #red;
+.user button:hover {
+    background-color: red; /* Corrected color */
 }
 
-/* Delete button */
 .delete-btn {
     background-color: red;
 }
 
-/* Delete button hover effect */
 .delete-btn:hover {
-    background-color: blue;
+    background-color: blue; /* Corrected color */
 }
 
         </style>
@@ -127,11 +119,11 @@ body {
         <div id="menu-btn" class="fas fa-bars"></div>
     </header>
     <div class="container">
-        <div class="employees">
-            <div class='employee'>
+        <div class="user">
+            <div class='user'>
                 <!-- Display user details -->
                 
-                <img src="<?php echo htmlspecialchars($row['photo']); ?>" alt="employee Image" width="100">
+                <img src="<?php echo htmlspecialchars($row['photo']); ?>" alt="user Image" width="100">
                 <p><strong>First Name:</strong> <?php echo htmlspecialchars($row['firstname']); ?></p>
                 <p><strong>Last Name:</strong> <?php echo htmlspecialchars($row['lastname']); ?></p>
                 <p><strong>Email:</strong> <?php echo htmlspecialchars($row['email']); ?></p>

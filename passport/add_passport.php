@@ -75,21 +75,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <style>
        /* CSS for Update employee Form */
 
-       body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 120px;
-            background-image: url('bg.png');
-            background-size: cover;
-            background-repeat: no-repeat;
-            font-family: Arial, sans-serif;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 120px;
+    background-image: url('../image/passport.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 .container {
     max-width: 600px;
-    margin: 50px auto;
+    margin: 120px auto; /* Shift container to the center */
     padding: 20px;
-    background-color: #f8f9fa;
+    background-color: rgba(248, 249, 250, 0.8); /* Make container transparent */
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -102,9 +102,7 @@ h1 {
 
 form {
     padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    
 }
 
 label {
@@ -148,14 +146,16 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #0056b3;
 }
+
     </style>
 </head>
 <body>
     
-    <h1>Register Form</h1>
+    
 
     <div class="container">
         <form action="add_passport.php" method="post" enctype="multipart/form-data">
+        <h1>Register Form</h1>
         
 <label for="TypeofService">Type of Service</label>
 <input type="text" name="TypeofService" required>
