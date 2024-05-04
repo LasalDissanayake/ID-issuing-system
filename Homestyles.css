@@ -1,0 +1,127 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.img1{
+    width: 100px;
+    height: 100px;
+}
+
+.bk_main{
+    background-image: url(./image/homebackground.png);
+    background-repeat: no-repeat;
+    background-size: 124%;
+    background-position-y: -130px;
+}
+
+.bk{
+    background-image: url(./image/homebackground.png);
+    background-repeat: no-repeat;
+    background-size: 13%;
+    background-position-y: -10px;
+    background-position-x: 1300px;
+}
+
+span{
+    font-size: 40px;
+    font-weight: bold;
+}
+
+header{
+    background-color: #333;
+    padding: 20px;
+    height: 55px;
+}
+
+nav ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    float:right;   
+}
+  
+nav ul li{
+    display: inline;
+    margin-right: 20px;   
+}
+  
+nav ul li a{
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 12px;
+}
+
+nav li a:hover{
+    background-color: rgb(177, 169, 169);
+    color: black;
+}
+
+.wel{
+    color: black;
+    text-align: center;
+    padding: 200px 0;
+}
+  
+.wel_1 h1{
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+  
+.wel_1 p{
+    font-size: 18px;
+    margin-bottom: 40px; 
+}
+  
+
+.btn{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn:hover{
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    transition-duration: 0.5s;
+}
+  
+.hwa{
+    text-align: center;
+    padding: 30px 0;
+}
+  
+.hwa h2{
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+  
+.hwa-card{
+    display: inline-block;
+    width: 580px;
+    background-color: #fff;
+    padding: 20px;
+    margin: 80px 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+  
+.hwa-icon img{
+    width: 80px;
+    margin-bottom: 20px;
+}
+
+footer{
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+  
+
+
