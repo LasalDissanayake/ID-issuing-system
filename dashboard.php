@@ -92,12 +92,7 @@ if (!isset($_SESSION["user_id"])) {
                 </li>
 
                 
-                <li>
-                    <a href="logout.php">
-                        <span class="icon"><i class="fas fa-user-o "></i></span>
-                        <span class="item">Log Out</span>
-                    </a>
-                </li>
+                
                 </ul>
         </div>
     </div>

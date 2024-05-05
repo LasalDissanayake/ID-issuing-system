@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Feedback Details</title>
+    <title>Contact Details</title>
     <style>
         /* Reset default browser styles */
         * {
@@ -18,7 +18,7 @@
         }
 
         h1 {
-            background-color: orangered;
+            background-color: rgba(193, 112, 53 , 0.8);
             width: 50%;
             height: 100px;
 
@@ -66,7 +66,7 @@
 
         /* Optional: Add a background image or texture */
         body {
-            background-image: url('3.jpg');
+            background-image: url('../image/contact.png');
             background-size: cover;
             background-repeat: no-repeat;
         }
@@ -75,7 +75,7 @@
 </head>
 <body>
     <a href="../dashboard.php">Home</a>
-    <h1>Feedback Details</h1>
+    <h1>Contact Details</h1>
     
     <table>
         <tr>

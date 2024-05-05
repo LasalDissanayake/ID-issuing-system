@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Appointment Details</title>
+    <title>appointment Details</title>
     <style>
         /* Reset default browser styles */
         * {
@@ -21,6 +21,7 @@
             background-color: rgba(193, 112, 53 , 0.8);
             width: 50%;
             height: 100px;
+
             text-align: center;
             margin: 20px auto;
             color: white;
@@ -82,8 +83,8 @@
             <th>Name</th>
             <th>Email</th>
             <th>Phone number</th>
-            <th>Appointment Date</th>
-            <th>Document type</th>
+            <th>Date</th>
+            <th>About document</th>
             <th>Message</th>
             <th>Actions</th>
         </tr>

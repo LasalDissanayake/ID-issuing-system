@@ -92,19 +92,18 @@ if (isset($_POST['submit'])) {
                 // Update ID data in the database with new photo path
                 $photo = $target_file;
                 $sql = "UPDATE id_card SET 
-                        
-                        nameWithInitials =' $nameWithInitials'
-                        firstname = '$firstname',
-                        lastname = '$lastname',
-                        dob = '$dob',
-                        nationality = '$nationality',
-                        gender = '$gender',
-                        address = '$address',
-                        nationality = '$nationality',
-                        occupation = '$occupation',
-                        maritalStatus = '$maritalStatus',
-                        photo = '$photo'
-                        WHERE id = $id";
+                nameWithInitials = '$nameWithInitials',
+                firstname = '$firstname',
+                lastname = '$lastname',
+                dob = '$dob',
+                nationality = '$nationality',
+                gender = '$gender',
+                address = '$address',
+                occupation = '$occupation',
+                maritalStatus = '$maritalStatus',
+                photo = '$photo'
+                WHERE id = $id";
+        
 
                 if (mysqli_query($conn, $sql)) {
                     echo "ID data updated successfully.";
@@ -114,6 +113,16 @@ if (isset($_POST['submit'])) {
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }
+
+            // Check if the update was successful
+if (mysqli_query($conn, $sql)) {
+    // Redirect to view_ID.php
+    header("Location: view_ID.php?id=$id");
+    exit(); // Ensure that code execution stops after redirection
+} else {
+    echo "Error updating ID data: " . mysqli_error($conn);
+}
+
         }
     } else {
         // Update ID data in the database without updating photo path
@@ -264,11 +273,11 @@ button[type="submit"]:hover {
         <label for="maritalStatus">Marital Status</label>
         <input type="text" name="maritalStatus" value="<?php echo $maritalStatus; ?>" required>
 
-        <label for="photo">Photo</label>
+        <label for="photo">Birth Certificate</label>
         <img src="<?php echo $photo; ?>" alt="Current Photo" style="max-width: 200px;">
         <input type="file" name="photo">
 
-        <button type="submit" name="submit">Update User</button>
+        <button type="submit" name="submit">Update ID</button>
     </form>
 </div>
 </body>

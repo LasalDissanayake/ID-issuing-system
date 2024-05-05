@@ -59,19 +59,19 @@ if (isset($_POST['btnlogin'])) {
     <form class="form1" method="post" action="login.php">
 
             <div class="input">
-            <i class="fa-solid fa-envelope"></i>
+            <i class=""></i>
                 <input type="email" placeholder="Enter E-mail" name="email">
             </div>
 
             
             <div class="input">
-            <i class="fa-solid fa-lock"></i>
+            <i class=""></i>
                 <input type="password" placeholder="Enter password" id="firstpas" name="password">
             </div>
 
             <button type="submit" name="btnlogin">Log In</button>
 
-            <p class="p1">Don't have an account? <a class="click" href="add_employee.php">Sign Up</a></P>
+            <p class="p1">Don't have an account? <a class="click" href="sign_up.php">Sign Up</a></P>
 
 
     </form>

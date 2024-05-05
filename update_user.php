@@ -168,6 +168,8 @@ label {
 input[type="text"],
 input[type="number"],
 input[type="date"],
+input[type="email"],
+input[type="password"],
 textarea {
     width: calc(100% - 22px);
     padding: 10px;

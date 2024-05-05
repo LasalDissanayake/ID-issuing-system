@@ -1,3 +1,8 @@
+<?php
+
+include '../header2.php';
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,6 +53,9 @@ label {
 
 input[type="text"],
 input[type="email"],
+input[type="phone"],
+input[type="date"],
+input[type="aboutDoc"],
 select,
 textarea {
     width: 100%;

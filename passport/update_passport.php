@@ -16,7 +16,7 @@ if (isset($_GET['id'])) {
 
         // Assign Employee details to variables
         $TypeofService = $row['TypeofService'];
-        $TypeofTravelDocument = $row['TypeofTravelDocument'];
+        
         $NIC = $row['NIC'];
         $Surname = $row['Surname'];
         $Address = $row['Address'];
@@ -44,7 +44,7 @@ if (isset($_GET['id'])) {
 if (isset($_POST['submit'])) {
     // Retrieve updated data from the form
     $TypeofService = mysqli_real_escape_string($conn, $_POST['TypeofService']);
-    $TypeofTravelDocument = mysqli_real_escape_string($conn, $_POST['TypeofTravelDocument']);
+   
     $NIC = mysqli_real_escape_string($conn, $_POST['NIC']);
     $Surname = mysqli_real_escape_string($conn, $_POST['Surname']);
     $Address = mysqli_real_escape_string($conn, $_POST['Address']);
@@ -97,7 +97,7 @@ if (isset($_POST['submit'])) {
                 $photo = $target_file;
                 $sql = "UPDATE passport SET 
                         TypeofService = '$TypeofService',
-                        TypeofTravelDocument = '$TypeofTravelDocument',
+                        
                         NIC = '$NIC',
                         Surname = '$Surname',
                         Address = '$Address',
@@ -125,7 +125,7 @@ if (isset($_POST['submit'])) {
         // Update employee employeedata in the database without updating photo path
         $sql = "UPDATE passport SET 
                         TypeofService = '$TypeofService',
-                        TypeofTravelDocument = '$TypeofTravelDocument',
+                       
                         NIC = '$NIC',
                         Surname = '$Surname',
                         Address = '$Address',
@@ -246,8 +246,7 @@ button[type="submit"]:hover {
         <label for="TypeofService">Type of Service</label>
         <input type="text" name="TypeofService" value="<?php echo $TypeofService; ?>" required>
 
-        <label for="TypeofTravelDocument">Type of Travel Document</label>
-        <input type="text" name="TypeofTravelDocument" value="<?php echo $TypeofTravelDocument; ?>" required>
+        
 
         <label for="NIC">National ID Card Number</label>
         <input type="text" name="NIC" value="<?php echo $NIC; ?>" required>

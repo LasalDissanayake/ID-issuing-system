@@ -32,7 +32,7 @@
 <head>
     <meta charset="UTF-8">
     <title>View User</title>
-    <link rel="stylesheet" href="../css/viewcard.css">
+    <!-- <link rel="stylesheet" href="../css/viewcard.css"> -->
     <!-- custom css file link  -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -105,19 +105,7 @@
 }
 
         </style>
-    <header class="header">
-        <!-- Your header content -->
-        <a href="#" class="logo">
-            <img src="logo.png" alt="logo" width="150px" height="70px"> 
-        </a>
-
-        <nav class="navbar">
-            <a href="#">home</a>
-            <a href="aboutus.php">About Us</a>
-        </nav>
-
-        <div id="menu-btn" class="fas fa-bars"></div>
-    </header>
+    
     <div class="container">
         <div class="user">
             <div class='user'>

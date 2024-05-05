@@ -2,6 +2,9 @@
 // Include your database connection file (e.g., dbh.php)
 include '../dbh.php';
 
+
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve form data and sanitize
     // Adjust according to your database schema
@@ -37,8 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     // User added successfully
                     echo '<script type="text/javascript">
                             window.onload = function () { 
-                                alert("User Added!"); 
-                                window.location.href = "view_ID.php";
+                                alert("ID card details Added!"); 
+                                window.location.href = "../dashboard.php";
                             }
                         </script>'; // Redirect to view_employee.php
                     exit;
@@ -183,7 +186,7 @@ button[type="submit"]:hover {
             <label for="photo">Birth Certificate</label>
             <input type="file" name="photo" required>
 
-            <button type="submit" name="submit">Register</button>
+            <button type="submit" name="submit">Submit Details</button>
         </form>
     </div>
 
@@ -201,10 +204,22 @@ button[type="submit"]:hover {
             if (!nameRegex.test(firstname) || !nameRegex.test(lastname)) {
                 errorMessages.push('Name should only contain letters and spaces.');
             }
-            
+
+            // Validation for Birthday
+            const dob = new Date(form.querySelector('input[name="dob"]').value);
+            const currentDate = new Date();
+            if (dob >= currentDate) {
+                errorMessages.push('Birthday should be a date before the current date.');
+            }
+
+            if (errorMessages.length > 0) {
+                event.preventDefault(); // Prevent form submission if there are errors
+                alert(errorMessages.join('\n')); // Display error messages
+            }
         });
     });
 </script>
+
 
 </body>
 </html>
