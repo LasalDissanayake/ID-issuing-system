@@ -2,6 +2,9 @@
 <?php
 
 include '../header2.php';
+session_start();
+$email = $_SESSION['email'];
+
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +23,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     font-family: Arial, sans-serif;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 1);
     margin: 0;
     padding: 0;
 }
@@ -37,7 +40,7 @@ h1 {
     width: 70%;
     max-width: 600px;
     margin: 100px auto; /* Adjust the top margin to center vertically */
-    background-color: rgba(255, 255, 255, 0.5); /* Make the form background transparent */
+    background-color: rgba(255, 255, 255, 0.8); /* Make the form background transparent */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -96,9 +99,11 @@ button[type="submit"]:hover {
                 <input type="text" id="name" name="name" required>
             </div>
 
+          
+
             <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="<?php echo $email;?>" required readonly>
             </div>
 
             <div class="form-group">

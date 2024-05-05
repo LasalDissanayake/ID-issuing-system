@@ -111,7 +111,7 @@ button[type="submit"]:hover {
 
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" value="' . $row['email'] . '" required>
+                    <input type="email" id="email" name="email" value="' . $row['email'] . '" required readonly>
                 </div>
 
                 <div class="form-group">

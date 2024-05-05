@@ -89,14 +89,16 @@
         <?php
         // Include your database connection script (e.g., dbh.php)
         include '../dbh.php';
-
+        session_start();
+ 
+ $email = $_SESSION['email'];
         // Check if the 'id' parameter is set in the URL
         if(isset($_GET['id'])) {
             // Sanitize the ID input to prevent SQL injection
             $id = mysqli_real_escape_string($conn, $_GET['id']);
 
             // Fetch data for the specific contact based on their ID
-            $query = "SELECT * FROM contact WHERE id = $id";
+            $query = "SELECT * FROM contact WHERE email = $email";
             $result = mysqli_query($conn, $query);
 
             // Check if a record is found

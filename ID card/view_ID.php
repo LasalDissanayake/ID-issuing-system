@@ -83,17 +83,22 @@
             <th>Name with Initials</th>
             <th>first name</th>
             <th>Last name</th>
+            <th>Email</th>
             <th>Birthday</th>
             <th>Nationality</th>
             <th>Gender</th>
             <th>Address</th>
             <th>Occupation</th>
             <th>marital Status</th>
+            <th>Birth Certificate</th>
             <th>Action</th>
         </tr>
         <?php
         // Include your database connection script (e.g., dbh.php)
         include '../dbh.php';
+
+        session_start();
+        $email = $_SESSION['email'];
 
         // Check if the 'id' parameter is set in the URL
         if(isset($_GET['id'])) {
@@ -101,7 +106,7 @@
             $id = mysqli_real_escape_string($conn, $_GET['id']);
 
             // Fetch data for the specific contact based on their ID
-            $query = "SELECT * FROM id_card WHERE id = $id";
+            $query = "SELECT * FROM id_card WHERE email = $email";
             $result = mysqli_query($conn, $query);
 
             // Check if a record is found
@@ -115,12 +120,17 @@
                 echo '<td>' . $row['nameWithInitials'] . '</td>';
                 echo '<td>' . $row['firstname'] . '</td>';
                 echo '<td>' . $row['lastname'] . '</td>';
+                echo '<td>' . $row['email'] . '</td>';
                 echo '<td>' . $row['dob'] . '</td>';
                 echo '<td>' . $row['nationality'] . '</td>';
                 echo '<td>' . $row['gender'] . '</td>';
                 echo '<td>' . $row['address'] . '</td>';
                 echo '<td>' . $row['occupation'] . '</td>';
                 echo '<td>' . $row['maritalStatus'] . '</td>';
+                echo '<td>' . $row['maritalStatus'] . '</td>';
+                echo '<td><img src="' . htmlspecialchars($row['photo']) . '" alt="user Image" width="100"></td>';
+                echo '</tr>';
+
                 echo '<td>
                         <a href="update_cdetails.php?id=' . $row['id'] . '">Update</a> |
                         <a href="delete_cdetails.php?id=' . $row['id'] . '">Delete</a>
@@ -141,12 +151,14 @@
                 echo '<td>' . $row['nameWithInitials'] . '</td>';
                 echo '<td>' . $row['firstname'] . '</td>';
                 echo '<td>' . $row['lastname'] . '</td>';
+                echo '<td>' . $row['email'] . '</td>';
                 echo '<td>' . $row['dob'] . '</td>';
                 echo '<td>' . $row['nationality'] . '</td>';
                 echo '<td>' . $row['gender'] . '</td>';
                 echo '<td>' . $row['address'] . '</td>';
                 echo '<td>' . $row['occupation'] . '</td>';
                 echo '<td>' . $row['maritalStatus'] . '</td>';
+                echo '<td><img src="' . htmlspecialchars($row['photo']) . '" alt="user Image" width="100"></td>';
                 echo '<td>
                 <a href="update_ID.php?id=' . $row['id'] . '">Update</a> |
                 <a href="delete_ID.php?id=' . $row['id'] . '">Delete</a>

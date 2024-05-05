@@ -2,6 +2,8 @@
 // Include your database connection file (e.g., dbh.php)
 include '../dbh.php';
 
+session_start();
+$email = $_SESSION['email'];
 
 
 
@@ -17,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $address = mysqli_real_escape_string($conn, $_POST['address']);
     $occupation = mysqli_real_escape_string($conn, $_POST['occupation']);
     $maritalStatus = mysqli_real_escape_string($conn, $_POST['maritalStatus']);
+    $email = mysqli_real_escape_string($conn, $_POST['$email']);
 
     // Check if a file was uploaded
     if (isset($_FILES['photo'])) {
@@ -33,8 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Move the uploaded file to the specified directory
             if (move_uploaded_file($file['tmp_name'], $upload_path)) {
                 // Insert data into the database
-                $insert_query = "INSERT INTO id_card (nameWithInitials, firstname, lastname, dob, nationality, gender, address, occupation, maritalStatus, photo) 
-                    VALUES ('$nameWithInitials', '$firstname', '$lastname', '$dob', '$nationality', '$gender', '$address', '$occupation', '$maritalStatus', '$upload_path')";
+                $insert_query = "INSERT INTO id_card (nameWithInitials, firstname, lastname, dob, nationality, gender, address, occupation, maritalStatus, photo, email) 
+                    VALUES ('$nameWithInitials', '$firstname', '$lastname', '$dob', '$nationality', '$gender', '$address', '$occupation', '$maritalStatus', '$upload_path', '$email')";
 
                 if (mysqli_query($conn, $insert_query)) {
                     // User added successfully
@@ -113,6 +116,7 @@ label {
 input[type="text"],
 input[type="number"],
 input[type="date"],
+input[type="email"],
 textarea {
     width: calc(100% - 22px);
     padding: 10px;
@@ -163,6 +167,11 @@ button[type="submit"]:hover {
 
             <label for="lastname">Last Name</label>
             <input type="text" name="lastname" required>
+
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="<?php echo $email;?>" required readonly >
+            
 
             
             <label for="dob">Birthday</label>

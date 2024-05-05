@@ -81,23 +81,23 @@
         <tr>
             <th>ID</th>
             <th>Type of Service</th>
-            
             <th>NIC</th>
-            <th>Surname</th>
             <th>Address</th>
             <th>Birthday</th>
-            <th>Place of Birth</th>
             <th>Gender</th>
             <th>Occupation</th>
             <th>Dual Citizenship</th>
             <th>Dual Citizenship No</th>
             <th>Phone</th>
             <th>email</th>
+            <th>Birth Certificate</th>
             <th>Action</th>
         </tr>
         <?php
         // Include your database connection script (e.g., dbh.php)
         include '../dbh.php';
+        session_start();
+        $email = $_SESSION['email'];
 
         // Check if the 'id' parameter is set in the URL
         if(isset($_GET['id'])) {
@@ -105,7 +105,7 @@
             $id = mysqli_real_escape_string($conn, $_GET['id']);
 
             // Fetch data for the specific contact based on their ID
-            $query = "SELECT * FROM passport WHERE id = $id";
+            $query = "SELECT * FROM passport WHERE email = $email";
             $result = mysqli_query($conn, $query);
 
             // Check if a record is found
@@ -119,16 +119,16 @@
                 echo '<td>' . $row['TypeofService'] . '</td>';
                 
                 echo '<td>' . $row['NIC'] . '</td>';
-                echo '<td>' . $row['Surname'] . '</td>';
                 echo '<td>' . $row['Address'] . '</td>';
                 echo '<td>' . $row['dob'] . '</td>';
-                echo '<td>' . $row['PlaceofBirth'] . '</td>';
+              
                 echo '<td>' . $row['gender'] . '</td>';
                 echo '<td>' . $row['Occupation'] . '</td>';
                 echo '<td>' . $row['DualCitizenship'] . '</td>';
                 echo '<td>' . $row['DualCitizenshipNo'] . '</td>';
                 echo '<td>' . $row['Phone'] . '</td>';
                 echo '<td>' . $row['email'] . '</td>';
+                echo '<td><img src="' . htmlspecialchars($row['photo']) . '" alt="user Image" width="100"></td>';
                 echo '<td>
                         <a href="update_cdetails.php?id=' . $row['id'] . '">Update</a> |
                         <a href="delete_cdetails.php?id=' . $row['id'] . '">Delete</a>
@@ -149,16 +149,16 @@
                 echo '<td>' . $row['TypeofService'] . '</td>';
                
                 echo '<td>' . $row['NIC'] . '</td>';
-                echo '<td>' . $row['Surname'] . '</td>';
                 echo '<td>' . $row['Address'] . '</td>';
                 echo '<td>' . $row['dob'] . '</td>';
-                echo '<td>' . $row['PlaceofBirth'] . '</td>';
+                
                 echo '<td>' . $row['gender'] . '</td>';
                 echo '<td>' . $row['Occupation'] . '</td>';
                 echo '<td>' . $row['DualCitizenship'] . '</td>';
                 echo '<td>' . $row['DualCitizenshipNo'] . '</td>';
                 echo '<td>' . $row['Phone'] . '</td>';
                 echo '<td>' . $row['email'] . '</td>';
+                echo '<td><img src="' . htmlspecialchars($row['photo']) . '" alt="user Image" width="100"></td>';
                 echo '<td>
                 <a href="update_passport.php?id=' . $row['id'] . '">Update</a> |
                 <a href="delete_passport.php?id=' . $row['id'] . '">Delete</a>

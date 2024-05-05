@@ -24,6 +24,8 @@ if (isset($_POST['btnlogin'])) {
             $row = mysqli_fetch_assoc($select);
             // Store user's ID in session variable
             $_SESSION['user_id'] = $row['id'];
+            $_SESSION['firstname'] = $row['firstname'];
+            $_SESSION['email'] = $row['email'];
             // Redirect to dashboard page
             header('Location: dashboard.php');
             exit;

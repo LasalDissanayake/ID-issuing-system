@@ -1,5 +1,7 @@
 <?php
-
+ session_start();
+ 
+ $email = $_SESSION['email'];
 include '../header2.php';
 ?>
 
@@ -112,9 +114,10 @@ button[type="submit"]:hover {
             </div>
 
             <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="<?php echo $email;?>" required readonly>
             </div>
+
 
             <div class="form-group">
                 <label for="phone">Phone Number:</label>
