@@ -16,12 +16,11 @@ if (isset($_GET['id'])) {
 
         // Assign Employee details to variables
         $TypeofService = $row['TypeofService'];
-        $TypeofTravelDocument = $row['TypeofTravelDocument'];
+        
         $NIC = $row['NIC'];
-        $Surname = $row['Surname'];
         $Address = $row['Address'];
         $dob = $row['dob'];
-        $PlaceofBirth = $row['PlaceofBirth'];
+       
         $gender = $row['gender'];
         $Occupation = $row['Occupation'];
         $DualCitizenship = $row['DualCitizenship'];
@@ -44,12 +43,11 @@ if (isset($_GET['id'])) {
 if (isset($_POST['submit'])) {
     // Retrieve updated data from the form
     $TypeofService = mysqli_real_escape_string($conn, $_POST['TypeofService']);
-    $TypeofTravelDocument = mysqli_real_escape_string($conn, $_POST['TypeofTravelDocument']);
+   
     $NIC = mysqli_real_escape_string($conn, $_POST['NIC']);
-    $Surname = mysqli_real_escape_string($conn, $_POST['Surname']);
     $Address = mysqli_real_escape_string($conn, $_POST['Address']);
     $dob = mysqli_real_escape_string($conn, $_POST['dob']);
-    $PlaceofBirth = mysqli_real_escape_string($conn, $_POST['PlaceofBirth']);
+    
     $gender = mysqli_real_escape_string($conn, $_POST['gender']);
     $Occupation = mysqli_real_escape_string($conn, $_POST['Occupation']);
     $DualCitizenship = mysqli_real_escape_string($conn, $_POST['DualCitizenship']);
@@ -97,12 +95,11 @@ if (isset($_POST['submit'])) {
                 $photo = $target_file;
                 $sql = "UPDATE passport SET 
                         TypeofService = '$TypeofService',
-                        TypeofTravelDocument = '$TypeofTravelDocument',
+                        
                         NIC = '$NIC',
-                        Surname = '$Surname',
                         Address = '$Address',
                         dob = '$dob',
-                        PlaceofBirth = '$PlaceofBirth',
+                       
                         gender = '$gender',
                         Occupation = '$Occupation',
                         DualCitizenship = '$DualCitizenship',
@@ -125,12 +122,11 @@ if (isset($_POST['submit'])) {
         // Update employee employeedata in the database without updating photo path
         $sql = "UPDATE passport SET 
                         TypeofService = '$TypeofService',
-                        TypeofTravelDocument = '$TypeofTravelDocument',
+                       
                         NIC = '$NIC',
-                        Surname = '$Surname',
                         Address = '$Address',
                         dob = '$dob',
-                        PlaceofBirth = '$PlaceofBirth',
+                       
                         gender = '$gender',
                         Occupation = '$Occupation',
                         DualCitizenship = '$DualCitizenship',
@@ -246,14 +242,12 @@ button[type="submit"]:hover {
         <label for="TypeofService">Type of Service</label>
         <input type="text" name="TypeofService" value="<?php echo $TypeofService; ?>" required>
 
-        <label for="TypeofTravelDocument">Type of Travel Document</label>
-        <input type="text" name="TypeofTravelDocument" value="<?php echo $TypeofTravelDocument; ?>" required>
+        
 
         <label for="NIC">National ID Card Number</label>
         <input type="text" name="NIC" value="<?php echo $NIC; ?>" required>
 
-        <label for="Surname">Home Town</label>
-        <input type="text" name="Surname" value="<?php echo $Surname; ?>" required>
+       
 
         <label for="Address">Address</label>
         <input type="text" name="Address" value="<?php echo $Address; ?>" required>
@@ -261,8 +255,7 @@ button[type="submit"]:hover {
         <label for="dob">Birthday</label>
         <input type="text" name="dob" value="<?php echo $dob; ?>" required>
 
-        <label for="PlaceofBirth">Expected Job</label>
-        <input type="text" name="PlaceofBirth" value="<?php echo $PlaceofBirth; ?>" required>
+        
 
         <label for="gender">Vocational Training Center</label>
         <input type="text" name="gender" value="<?php echo $gender; ?>" required>

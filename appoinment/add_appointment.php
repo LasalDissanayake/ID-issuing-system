@@ -1,7 +1,14 @@
+<?php
+ session_start();
+ 
+ $email = $_SESSION['email'];
+include '../header2.php';
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Contact Us</title>
+    <title>Make appointment</title>
     <style>
       * {
     margin: 0;
@@ -39,9 +46,22 @@ label {
     color: #333;
     margin-bottom: 5px; /* Added margin below label for better spacing */
 }
+.contact-form {
+    width: 70%;
+    max-width: 600px;
+    margin: 50px auto; /* Adjusted margin to center vertically and horizontally */
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 
 input[type="text"],
 input[type="email"],
+input[type="phone"],
+input[type="date"],
+input[type="aboutDoc"],
 textarea {
     width: 100%;
     padding: 10px;
@@ -53,6 +73,7 @@ textarea {
 
 input[type="text"]:focus,
 input[type="email"]:focus,
+
 textarea:focus {
     border-color: #007bff; /* Change border color on focus */
 }
@@ -78,6 +99,8 @@ button[type="submit"]:hover {
 
 
     </style>
+
+    
 </head>
 <body>
     
@@ -91,9 +114,10 @@ button[type="submit"]:hover {
             </div>
 
             <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="<?php echo $email;?>" required readonly>
             </div>
+
 
             <div class="form-group">
                 <label for="phone">Phone Number:</label>
@@ -126,6 +150,8 @@ button[type="submit"]:hover {
 <?php
 include '../dbh.php';
 
+
+
 if (isset($_POST['submit'])) {
     // Retrieve form data and sanitize
     $name = mysqli_real_escape_string($conn, $_POST['name']);
@@ -144,6 +170,14 @@ if (isset($_POST['submit'])) {
         echo '<script type="text/javascript">
             window.onload = function () { alert("Invalid email format."); }
             </script>';
+    } elseif (!preg_match("/^[0-9]{10}$/", $phone)) {
+        echo '<script type="text/javascript">
+            window.onload = function () { alert("Phone number should be a 10-digit number."); }
+            </script>';
+    } elseif (strtotime($date) < strtotime(date('Y-m-d'))) {
+        echo '<script type="text/javascript">
+            window.onload = function () { alert("Appointment date must be a future date."); }
+            </script>';
     } else {
         // Insert data into the database
         $sql = "INSERT INTO `appointment` (`name`,`email`,`phone`,`date`, `aboutDoc`,  `message`)
@@ -160,4 +194,6 @@ if (isset($_POST['submit'])) {
         }
     }
 }
+
+
 ?>

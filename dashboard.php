@@ -91,13 +91,22 @@ if (!isset($_SESSION["user_id"])) {
                     </a>
                 </li>
 
-                
+                <li>
+                    <a href="contact_us/view_cdetails.php">
+                        <span class="icon"><i class="fas fa-comment "></i></span>
+                        <span class="item">View My Requests</span>
+                    </a>
+                </li>
+
                 <li>
                     <a href="logout.php">
-                        <span class="icon"><i class="fas fa-user-o "></i></span>
+                        <span class="icon"><i class="fas fa-address-book"></i></span>
                         <span class="item">Log Out</span>
                     </a>
                 </li>
+
+                
+                
                 </ul>
         </div>
     </div>

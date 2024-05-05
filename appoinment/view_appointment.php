@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Appointment Details</title>
+    <title>appointment Details</title>
     <style>
         /* Reset default browser styles */
         * {
@@ -21,6 +21,7 @@
             background-color: rgba(193, 112, 53 , 0.8);
             width: 50%;
             height: 100px;
+
             text-align: center;
             margin: 20px auto;
             color: white;
@@ -82,8 +83,8 @@
             <th>Name</th>
             <th>Email</th>
             <th>Phone number</th>
-            <th>Appointment Date</th>
-            <th>Document type</th>
+            <th>Date</th>
+            <th>About document</th>
             <th>Message</th>
             <th>Actions</th>
         </tr>
@@ -91,13 +92,19 @@
         // Include your database connection script (e.g., dbh.php)
         include '../dbh.php';
 
+        session_start();
+        $name = $_SESSION['firstname'];
+        $email = $_SESSION['email'];
+
         // Check if the 'id' parameter is set in the URL
         if(isset($_GET['id'])) {
+
+            
             // Sanitize the ID input to prevent SQL injection
             $id = mysqli_real_escape_string($conn, $_GET['id']);
 
             // Fetch data for the specific contact based on their ID
-            $query = "SELECT * FROM appointment WHERE id = $id";
+            
             $result = mysqli_query($conn, $query);
 
             // Check if a record is found
@@ -125,7 +132,7 @@
             }
         } else {
             // If 'id' parameter is not set, display all contacts
-            $query = "SELECT * FROM appointment";
+            $query = "SELECT * FROM appointment WHERE email='$email'";
             $result = mysqli_query($conn, $query);
 
             while ($row = mysqli_fetch_assoc($result)) {

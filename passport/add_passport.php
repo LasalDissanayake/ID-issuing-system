@@ -1,17 +1,18 @@
 <?php
 // Include your database connection file (e.g., dbh.php)
 include '../dbh.php';
+session_start();
+$email = $_SESSION['email'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve form data and sanitize
     // Adjust according to your database schema
     $TypeofService = mysqli_real_escape_string($conn, $_POST['TypeofService']);
-    $TypeofTravelDocument = mysqli_real_escape_string($conn, $_POST['TypeofTravelDocument']);
+    
     $NIC = mysqli_real_escape_string($conn, $_POST['NIC']);
-    $Surname = mysqli_real_escape_string($conn, $_POST['Surname']);
     $Address = mysqli_real_escape_string($conn, $_POST['Address']);
     $dob = mysqli_real_escape_string($conn, $_POST['dob']);
-    $PlaceofBirth = mysqli_real_escape_string($conn, $_POST['PlaceofBirth']);
+    
     $gender = mysqli_real_escape_string($conn, $_POST['gender']);
     $Occupation = mysqli_real_escape_string($conn, $_POST['Occupation']);
     $DualCitizenship = mysqli_real_escape_string($conn, $_POST['DualCitizenship']);
@@ -34,14 +35,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Move the uploaded file to the specified directory
             if (move_uploaded_file($file['tmp_name'], $upload_path)) {
                 // Insert data into the database
-                $insert_query = "INSERT INTO passport (TypeofService, TypeofTravelDocument, NIC, Surname, Address, dob, PlaceofBirth, gender, Occupation, DualCitizenship, DualCitizenshipNo, Phone, email, photo) 
-                    VALUES ('$TypeofService', '$TypeofTravelDocument', '$NIC', '$Surname', '$Address', '$dob', '$PlaceofBirth', '$gender', '$Occupation', '$DualCitizenship', '$DualCitizenshipNo', '$Phone', '$email', '$upload_path')";
+                $insert_query = "INSERT INTO passport (TypeofService, NIC,  Address, dob,  gender, Occupation, DualCitizenship, DualCitizenshipNo, Phone, email, photo) 
+                    VALUES ('$TypeofService', '$NIC',  '$Address', '$dob', '$gender', '$Occupation', '$DualCitizenship', '$DualCitizenshipNo', '$Phone', '$email', '$upload_path')";
 
                 if (mysqli_query($conn, $insert_query)) {
                     // User added successfully
                     echo '<script type="text/javascript">
                             window.onload = function () { 
-                                alert("User Added!"); 
+                                alert("passport details Added!"); 
                                 window.location.href = "view_passport.php";
                             }
                         </script>'; // Redirect to view_employee.php
@@ -115,6 +116,7 @@ label {
 input[type="text"],
 input[type="number"],
 input[type="date"],
+input[type="email"],
 textarea {
     width: calc(100% - 22px);
     padding: 10px;
@@ -160,14 +162,12 @@ button[type="submit"]:hover {
 <label for="TypeofService">Type of Service</label>
 <input type="text" name="TypeofService" required>
 
-<label for="TypeofTravelDocument">Type of Travel Document</label>
-<input type="text" name="TypeofTravelDocument" required>
+
 
 <label for="NIC">NIC</label>
 <input type="text" name="NIC" required>
 
-<label for="Surname">Surname</label>
-<input type="text" name="Surname" required>
+
 
 <label for="Address">Address</label><br>
 <textarea id="Address" name="Address" rows="4" cols="50" required></textarea><br><br>
@@ -175,8 +175,7 @@ button[type="submit"]:hover {
 <label for="dob">Date of Birth</label>
 <input type="date" name="dob" required>
 
-<label for="PlaceofBirth">Place of Birth</label>
-<input type="text" name="PlaceofBirth" required>
+
 
 <label for="gender">Gender</label>
 <select name="gender" required>
@@ -192,13 +191,15 @@ button[type="submit"]:hover {
 <input type="text" name="DualCitizenship" required>
 
 <label for="DualCitizenshipNo">Dual Citizenship No</label>
-<input type="text" name="DualCitizenshipNo" required>
+<input type="text" name="DualCitizenshipNo" placeholder="If not have type ( - )" required>
 
 <label for="Phone">Phone</label>
 <input type="text" name="Phone" required>
 
-<label for="email">Email</label>
-<input type="email" name="email" required>
+
+<label for="email">Email:</label>
+<input type="email" id="email" name="email" value="<?php echo $email;?>" required readonly>
+            
 
 <label for="photo">Birth Certificate</label>
             <input type="file" name="photo" required>
@@ -223,10 +224,22 @@ button[type="submit"]:hover {
             if (!nameRegex.test(firstname) || !nameRegex.test(lastname)) {
                 errorMessages.push('Name should only contain letters and spaces.');
             }
-            
+
+            // Validation for Birthday
+            const dob = new Date(form.querySelector('input[name="dob"]').value);
+            const currentDate = new Date();
+            if (dob >= currentDate) {
+                errorMessages.push('Birthday should be a date before the current date.');
+            }
+
+            if (errorMessages.length > 0) {
+                event.preventDefault(); // Prevent form submission if there are errors
+                alert(errorMessages.join('\n')); // Display error messages
+            }
         });
     });
 </script>
+
 
 </body>
 </html>

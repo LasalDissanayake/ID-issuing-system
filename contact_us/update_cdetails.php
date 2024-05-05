@@ -3,7 +3,7 @@
 <head>
     <title>Update Contact</title>
     <style>
-        /* Reset default browser styles */
+       /* Reset default browser styles */
 * {
     margin: 0;
     padding: 0;
@@ -27,7 +27,7 @@ form {
     width: 70%;
     max-width: 600px;
     margin: 0 auto;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.7); /* Transparent background */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -45,6 +45,7 @@ label {
 
 input[type="text"],
 input[type="email"],
+input[type="phone"],
 select,
 textarea {
     width: 100%;
@@ -74,10 +75,11 @@ button[type="submit"]:hover {
 
 /* Optional: Add a background image or texture */
 body {
-    background-image: url('3.jpg');
+    background-image: url('../image/contact.png');
     background-size: cover;
     background-repeat: no-repeat;
 }
+
 
     </style>
 </head>
@@ -106,7 +108,7 @@ body {
 
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" value="' . $row['email'] . '" required>
+                    <input type="email" id="email" name="email" value="' . $row['email'] . '" required readonly>
                 </div>
 
                 <div class="form-group">

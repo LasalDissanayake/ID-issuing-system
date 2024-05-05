@@ -1,3 +1,12 @@
+
+<?php
+
+include '../header2.php';
+session_start();
+$email = $_SESSION['email'];
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,11 +19,11 @@
 }
 
 body {
-    background-image: url('3.jpg');
+    background-image: url('../image/userview.png');
     background-size: cover;
     background-repeat: no-repeat;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: rgba(255, 255, 255, 1);
     margin: 0;
     padding: 0;
 }
@@ -22,23 +31,21 @@ body {
 h1 {
     
     text-align: center;
-    margin: 20px 0;
+    margin: 20px ;
     background-color: white;
-    width: 60%;
-    height: 50px;
-    border-radius: 8px;
-    margin-left: 270px;
+   
 }
 
 .contact-form {
     width: 70%;
     max-width: 600px;
-    margin: 0 auto;
-    background-color: #fff;
+    margin: 100px auto; /* Adjust the top margin to center vertically */
+    background-color: rgba(255, 255, 255, 0.8); /* Make the form background transparent */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 
 .form-group {
     margin: 10px 0;
@@ -52,6 +59,7 @@ label {
 
 input[type="text"],
 input[type="email"],
+input[type="phone"],
 textarea {
     width: 100%;
     padding: 10px;
@@ -81,18 +89,21 @@ button[type="submit"]:hover {
     </style>
 </head>
 <body>
-    <h1>Contact Us</h1>
+    
 
     <div class="contact-form">
         <form action="add_cdetails.php" method="post">
+        <h1>Contact Us</h1>
             <div class="form-group">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
             </div>
 
+          
+
             <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="<?php echo $email;?>" required readonly>
             </div>
 
             <div class="form-group">

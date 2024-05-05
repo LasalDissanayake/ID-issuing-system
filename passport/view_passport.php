@@ -1,152 +1,172 @@
-<?php
-    // Include database connection
-    include '../dbh.php';
-
-    // Check if user is logged in (implement your own authentication logic)
-    // For example, you might have session variables set after successful login
-    session_start();
-    if(!isset($_SESSION['user_id'])) {
-        // Redirect the user to the login page if not logged in
-        header("Location: login.php"); // Redirect to your login page
-        exit();
-    }
-
-    // Retrieve logged-in user details from the database
-    $userId = $_SESSION['user_id'];
-    $sql = "SELECT * FROM passport WHERE id = $userId";
-    $result = mysqli_query($conn, $sql);
-
-    // Check if user exists
-    if(mysqli_num_rows($result) == 0) {
-        // Redirect or display a message if the user doesn't exist
-        echo "User not found!";
-        exit();
-    }
-
-    // Fetch user details
-    $row = mysqli_fetch_assoc($result);
-?>
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>View Employee</title>
-    <link rel="stylesheet" href="../css/viewcard.css">
-    <!-- custom css file link  -->
-    <link rel="stylesheet" href="style.css">
+    <title>Passport Details</title>
+    <style>
+        /* Reset default browser styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: rgba(193, 112, 53 , 0.8);
+            width: 50%;
+            height: 100px;
+
+            text-align: center;
+            margin: 20px auto;
+            color: white;
+            border-radius: 8px;
+            font-size: 50px;
+        }
+
+        table {
+            width: 70%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        a {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 5px;
+            background-color: red;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Optional: Add a background image or texture */
+        body {
+            background-image: url('../image/passport.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+    </style>
 </head>
 <body>
-    <style>
-/* Profile container */
-.container {
-    max-width: 800px;
-    margin: 120px auto 20px; /* Shift container to the center */
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8); /* Make container transparent */
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
-}
-
-/* employee details */
-.employee {
+    <a href="../dashboard.php">Home</a>
+    <h1>Passport Details</h1>
     
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
-    text-align: center;
-  
-}
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Type of Service</th>
+            <th>NIC</th>
+            <th>Address</th>
+            <th>Birthday</th>
+            <th>Gender</th>
+            <th>Occupation</th>
+            <th>Dual Citizenship</th>
+            <th>Dual Citizenship No</th>
+            <th>Phone</th>
+            <th>email</th>
+            <th>Birth Certificate</th>
+            <th>Action</th>
+        </tr>
+        <?php
+        // Include your database connection script (e.g., dbh.php)
+        include '../dbh.php';
+        session_start();
+        $email = $_SESSION['email'];
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    background-image: url('../image/passport.png'); /* Add background image */
-    background-size: cover;
-    background-repeat: no-repeat;
-}
+        // Check if the 'id' parameter is set in the URL
+        if(isset($_GET['id'])) {
+            // Sanitize the ID input to prevent SQL injection
+            $id = mysqli_real_escape_string($conn, $_GET['id']);
 
-/* employee image */
-.employee img {
-    display: block;
-    margin: 0 auto 20px;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 4px solid #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
+            // Fetch data for the specific contact based on their ID
+            $query = "SELECT * FROM passport WHERE email = $email";
+            $result = mysqli_query($conn, $query);
 
-/* employee details paragraphs */
-.employee p {
-    margin: 10px 0;
-    font-size: 18px;
-}
+            // Check if a record is found
+            if(mysqli_num_rows($result) > 0) {
+                // Fetch the record
+                $row = mysqli_fetch_assoc($result);
 
-/* Edit and delete buttons */
-.employee button {
-    padding: 10px 20px;
-    background-color: blue;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 10px;
-    transition: background-color 0.3s;
-}
-
-/* Edit button hover effect */
-.employee button:hover {
-    background-color: red; /* Fixing typo, should be red not #red */
-}
-
-/* Delete button */
-.delete-btn {
-    background-color: red;
-}
-
-/* Delete button hover effect */
-.delete-btn:hover {
-    background-color: blue; /* Fixing typo, should be blue not #blue */
-}
-
-        </style>
-    
-    <div class="container">
-        <div class="employees">
-            <div class='employee'>
-                <!-- Display user details -->
+                // Display the contact's details
+                echo '<tr>';
+                echo '<td>' . $row['id'] . '</td>';
+                echo '<td>' . $row['TypeofService'] . '</td>';
                 
-                <img src="<?php echo htmlspecialchars($row['photo']); ?>" alt="employee Image" width="100">
-                <p><strong>Type of Service:</strong> <?php echo htmlspecialchars($row['TypeofService']); ?></p>
-                <p><strong>Type of Travel Document:</strong> <?php echo htmlspecialchars($row['TypeofTravelDocument']); ?></p>
-                <p><strong>NIC:</strong> <?php echo htmlspecialchars($row['NIC']); ?></p>
-                <p><strong>Surname:</strong> <?php echo htmlspecialchars($row['Surname']); ?></p>
-                <p><strong>Address:</strong> <?php echo htmlspecialchars($row['Address']); ?></p>
-                <p><strong>Date of Birth:</strong> <?php echo htmlspecialchars($row['dob']); ?></p>
-                <p><strong>Place of Birth:</strong> <?php echo htmlspecialchars($row['PlaceofBirth']); ?></p>
-                <p><strong>Gender:</strong> <?php echo htmlspecialchars($row['gender']); ?></p>
-                <p><strong>Occupation:</strong> <?php echo htmlspecialchars($row['Occupation']); ?></p>
-                <p><strong>Dual Citizenship:</strong> <?php echo htmlspecialchars($row['DualCitizenship']); ?></p>
-                <p><strong>Dual Citizenship No:</strong> <?php echo htmlspecialchars($row['DualCitizenshipNo']); ?></p>
-                <p><strong>Phone:</strong> <?php echo htmlspecialchars($row['Phone']); ?></p>
-                <p><strong>Email:</strong> <?php echo htmlspecialchars($row['email']); ?></p>
+                echo '<td>' . $row['NIC'] . '</td>';
+                echo '<td>' . $row['Address'] . '</td>';
+                echo '<td>' . $row['dob'] . '</td>';
+              
+                echo '<td>' . $row['gender'] . '</td>';
+                echo '<td>' . $row['Occupation'] . '</td>';
+                echo '<td>' . $row['DualCitizenship'] . '</td>';
+                echo '<td>' . $row['DualCitizenshipNo'] . '</td>';
+                echo '<td>' . $row['Phone'] . '</td>';
+                echo '<td>' . $row['email'] . '</td>';
+                echo '<td><img src="' . htmlspecialchars($row['photo']) . '" alt="user Image" width="100"></td>';
+                echo '<td>
+                        <a href="update_cdetails.php?id=' . $row['id'] . '">Update</a> |
+                        <a href="delete_cdetails.php?id=' . $row['id'] . '">Delete</a>
+                      </td>';
+                echo '</tr>';
+            } else {
+                // If no record is found, display a message
+                echo '<tr><td colspan="5">No record found for this ID.</td></tr>';
+            }
+        } else {
+            // If 'id' parameter is not set, display all contacts
+            $query = "SELECT * FROM passport";
+            $result = mysqli_query($conn, $query);
 
-                <!-- Edit and delete buttons -->
-                <a href='update_passport.php?id=<?php echo $row['id']; ?>'><button>Edit</button></a>
-                <a href='delete_passport.php?id=<?php echo $row['id']; ?>'><button class="delete-btn">Delete</button></a>
-            </div>
-        </div>
-    </div>
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo '<tr>';
+                echo '<td>' . $row['id'] . '</td>';
+                echo '<td>' . $row['TypeofService'] . '</td>';
+               
+                echo '<td>' . $row['NIC'] . '</td>';
+                echo '<td>' . $row['Address'] . '</td>';
+                echo '<td>' . $row['dob'] . '</td>';
+                
+                echo '<td>' . $row['gender'] . '</td>';
+                echo '<td>' . $row['Occupation'] . '</td>';
+                echo '<td>' . $row['DualCitizenship'] . '</td>';
+                echo '<td>' . $row['DualCitizenshipNo'] . '</td>';
+                echo '<td>' . $row['Phone'] . '</td>';
+                echo '<td>' . $row['email'] . '</td>';
+                echo '<td><img src="' . htmlspecialchars($row['photo']) . '" alt="user Image" width="100"></td>';
+                echo '<td>
+                <a href="update_passport.php?id=' . $row['id'] . '">Update</a> |
+                <a href="delete_passport.php?id=' . $row['id'] . '">Delete</a>
+                      </td>';
+                echo '</tr>';
+            }
+        }
+        ?>
+    </table>
 </body>
 </html>
-
-<?php
-    // Free result set
-    mysqli_free_result($result);
-
-    // Close connection
-    mysqli_close($conn);
-?>

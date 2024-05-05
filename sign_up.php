@@ -168,23 +168,54 @@ button[type="submit"]:hover {
     </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.querySelector('form');
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
 
-        form.addEventListener('submit', function(event) {
-            let errorMessages = [];
+    form.addEventListener('submit', function(event) {
+        let errorMessages = [];
+        let isValid = true;
 
-            // Validation for Name With Initials and Full Name
-            const firstname = form.querySelector('input[name="firstname"]').value;
-            const lastname = form.querySelector('input[name="lastname"]').value;
-            const nameRegex = /^[a-zA-Z\s]*$/; // Allows only letters and spaces
-            if (!nameRegex.test(firstname) || !nameRegex.test(lastname)) {
-                errorMessages.push('Name should only contain letters and spaces.');
+        // Validation for Name With Initials and Full Name
+        const firstname = form.querySelector('input[name="firstname"]').value;
+        const lastname = form.querySelector('input[name="lastname"]').value;
+        const nameRegex = /^[a-zA-Z\s]*$/; // Allows only letters and spaces
+        if (!nameRegex.test(firstname) || !nameRegex.test(lastname)) {
+            errorMessages.push('First name and last name should only contain letters and spaces.');
+            isValid = false;
+        }
+        
+        // Validation to check if all fields are filled
+        const inputs = form.querySelectorAll('input[type="text"], input[type="email"], input[type="password"], input[type="file"]');
+        inputs.forEach(input => {
+            if (!input.value.trim()) {
+                errorMessages.push('All fields are required.');
+                isValid = false;
             }
-            
         });
+
+        // If there are error messages, prevent form submission and display them
+        if (errorMessages.length > 0) {
+            event.preventDefault();
+            const errorMessageElement = document.createElement('div');
+            errorMessageElement.classList.add('error-message');
+            errorMessageElement.textContent = errorMessages.join('\n');
+            form.appendChild(errorMessageElement);
+        }
+        
+        // Optional: you can remove the error messages on subsequent submissions
+        form.addEventListener('input', function() {
+            const errorMessageElement = form.querySelector('.error-message');
+            if (errorMessageElement) {
+                form.removeChild(errorMessageElement);
+            }
+        });
+
+        // Optionally, you can also return isValid to determine if form submission should proceed
+        return isValid;
     });
+});
 </script>
+
 
 </body>
 </html>

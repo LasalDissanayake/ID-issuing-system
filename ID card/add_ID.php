@@ -2,6 +2,11 @@
 // Include your database connection file (e.g., dbh.php)
 include '../dbh.php';
 
+session_start();
+$email = $_SESSION['email'];
+
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve form data and sanitize
     // Adjust according to your database schema
@@ -14,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $address = mysqli_real_escape_string($conn, $_POST['address']);
     $occupation = mysqli_real_escape_string($conn, $_POST['occupation']);
     $maritalStatus = mysqli_real_escape_string($conn, $_POST['maritalStatus']);
+    $email = mysqli_real_escape_string($conn, $_POST['$email']);
 
     // Check if a file was uploaded
     if (isset($_FILES['photo'])) {
@@ -30,15 +36,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Move the uploaded file to the specified directory
             if (move_uploaded_file($file['tmp_name'], $upload_path)) {
                 // Insert data into the database
-                $insert_query = "INSERT INTO id_card (nameWithInitials, firstname, lastname, dob, nationality, gender, address, occupation, maritalStatus, photo) 
-                    VALUES ('$nameWithInitials', '$firstname', '$lastname', '$dob', '$nationality', '$gender', '$address', '$occupation', '$maritalStatus', '$upload_path')";
+                $insert_query = "INSERT INTO id_card (nameWithInitials, firstname, lastname, dob, nationality, gender, address, occupation, maritalStatus, photo, email) 
+                    VALUES ('$nameWithInitials', '$firstname', '$lastname', '$dob', '$nationality', '$gender', '$address', '$occupation', '$maritalStatus', '$upload_path', '$email')";
 
                 if (mysqli_query($conn, $insert_query)) {
                     // User added successfully
                     echo '<script type="text/javascript">
                             window.onload = function () { 
-                                alert("User Added!"); 
-                                window.location.href = "view_ID.php";
+                                alert("ID card details Added!"); 
+                                window.location.href = "../dashboard.php";
                             }
                         </script>'; // Redirect to view_employee.php
                     exit;
@@ -110,6 +116,7 @@ label {
 input[type="text"],
 input[type="number"],
 input[type="date"],
+input[type="email"],
 textarea {
     width: calc(100% - 22px);
     padding: 10px;
@@ -162,6 +169,11 @@ button[type="submit"]:hover {
             <input type="text" name="lastname" required>
 
             
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="<?php echo $email;?>" required readonly >
+            
+
+            
             <label for="dob">Birthday</label>
             <input type="date" name="dob" required>
 
@@ -183,7 +195,7 @@ button[type="submit"]:hover {
             <label for="photo">Birth Certificate</label>
             <input type="file" name="photo" required>
 
-            <button type="submit" name="submit">Register</button>
+            <button type="submit" name="submit">Submit Details</button>
         </form>
     </div>
 
@@ -201,10 +213,22 @@ button[type="submit"]:hover {
             if (!nameRegex.test(firstname) || !nameRegex.test(lastname)) {
                 errorMessages.push('Name should only contain letters and spaces.');
             }
-            
+
+            // Validation for Birthday
+            const dob = new Date(form.querySelector('input[name="dob"]').value);
+            const currentDate = new Date();
+            if (dob >= currentDate) {
+                errorMessages.push('Birthday should be a date before the current date.');
+            }
+
+            if (errorMessages.length > 0) {
+                event.preventDefault(); // Prevent form submission if there are errors
+                alert(errorMessages.join('\n')); // Display error messages
+            }
         });
     });
 </script>
+
 
 </body>
 </html>
